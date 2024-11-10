@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -24,33 +26,45 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSBundleDisplayName</key>
+	<string>NotifStudio</string>
+	<key>NSCriticalAlertUsageDescription</key>
+	<string>Nous avons besoin de votre autorisation pour envoyer des notifications importantes</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>stp alexis.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Stp alexis.</string>
+	<key>NSNotificationUsageDescription</key>
+	<string>Nous avons besoin de votre autorisation pour envoyer des notifications</string>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>Cette application utilise les notifications pour vous informer des mises à jour.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 		<string>fetch</string>
 		<string>processing</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>stp alexis.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Stp alexis.</string>
-	<key>NSUserNotificationUsageDescription</key>
-	<string>Cette application utilise les notifications pour vous informer des mises à jour.</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -58,15 +72,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSBundleDisplayName</key>
-	<string>NotifStudio</string>
-	<key>NSNotificationUsageDescription</key>
-	<string>Nous avons besoin de votre autorisation pour envoyer des notifications</string>
-	<key>NSCriticalAlertUsageDescription</key>
-	<string>Nous avons besoin de votre autorisation pour envoyer des notifications importantes</string>
 </dict>
 </plist>

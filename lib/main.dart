@@ -46,7 +46,7 @@ class NotificationAppState extends State<NotificationApp> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _bodyController = TextEditingController();
   final TextEditingController _countController = TextEditingController(text: '1');
-  final TextEditingController _delayController = TextEditingController(text: '5'); // en secondes
+  final TextEditingController _delayController = TextEditingController(text: '10');
 
   static const _padding = EdgeInsets.all(20.0);
   static const _sizedBoxHeight = SizedBox(height: 16);
@@ -61,7 +61,6 @@ class NotificationAppState extends State<NotificationApp> {
   }
 
   Future<void> _initializeNotifications() async {
-    // Vérification des permissions
     final notificationSettings = await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
@@ -71,7 +70,6 @@ class NotificationAppState extends State<NotificationApp> {
           critical: true,
         );
 
-    // Afficher le statut des permissions dans la console
     print('Statut des permissions iOS : $notificationSettings');
 
     const DarwinInitializationSettings initializationSettingsIOS =
@@ -79,7 +77,7 @@ class NotificationAppState extends State<NotificationApp> {
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
-      requestCriticalPermission: true, // Ajout de cette permission
+      requestCriticalPermission: true, 
     );
 
     const InitializationSettings initializationSettings =
@@ -88,7 +86,6 @@ class NotificationAppState extends State<NotificationApp> {
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
-        // Gérer la réponse à la notification ici
         print('Notification reçue : ${details.payload}');
       },
     );
