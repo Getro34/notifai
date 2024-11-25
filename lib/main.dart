@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
           ),
           filled: true,
           fillColor: Colors.grey[100],
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
       ),
       home: const NotificationApp(),
@@ -45,8 +46,10 @@ class NotificationAppState extends State<NotificationApp> {
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _bodyController = TextEditingController();
-  final TextEditingController _countController = TextEditingController(text: '1');
-  final TextEditingController _delayController = TextEditingController(text: '10');
+  final TextEditingController _countController =
+      TextEditingController(text: '1');
+  final TextEditingController _delayController =
+      TextEditingController(text: '10');
 
   static const _padding = EdgeInsets.all(20.0);
   static const _sizedBoxHeight = SizedBox(height: 16);
@@ -62,7 +65,8 @@ class NotificationAppState extends State<NotificationApp> {
 
   Future<void> _initializeNotifications() async {
     final notificationSettings = await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
@@ -77,7 +81,7 @@ class NotificationAppState extends State<NotificationApp> {
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
-      requestCriticalPermission: true, 
+      requestCriticalPermission: true,
     );
 
     const InitializationSettings initializationSettings =
@@ -125,7 +129,8 @@ class NotificationAppState extends State<NotificationApp> {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Le délai doit être un entier positif valide en secondes.'),
+            content: Text(
+                'Le délai doit être un entier positif valide en secondes.'),
           ),
         );
         return;
@@ -150,7 +155,8 @@ class NotificationAppState extends State<NotificationApp> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Confirmer l\'envoi'),
-          content: const Text('Êtes-vous sûr de vouloir programmer ces notifications ?'),
+          content: const Text(
+              'Êtes-vous sûr de vouloir programmer ces notifications ?'),
           actions: <Widget>[
             TextButton(
               child: const Text('Annuler'),
@@ -170,14 +176,19 @@ class NotificationAppState extends State<NotificationApp> {
     );
   }
 
-  Future<void> _scheduleNotification(String title, String body, int delaySeconds) async {
+  Future<void> _scheduleNotification(
+      String title, String body, int delaySeconds) async {
     try {
-      final int notificationId = DateTime.now().millisecondsSinceEpoch ~/ 1000 + delaySeconds;
-      
-      print('Programmation notification : ID=$notificationId, Délai=$delaySeconds sec');
+      final int notificationId =
+          DateTime.now().millisecondsSinceEpoch ~/ 1000 + delaySeconds;
+
+      print(
+          'Programmation notification : ID=$notificationId, Délai=$delaySeconds sec');
 
       const DarwinNotificationDetails iOSPlatformChannelSpecifics =
-          DarwinNotificationDetails();
+          DarwinNotificationDetails(
+        sound: 'cash_register_sound_effect.mp3',
+      );
 
       const NotificationDetails platformChannelSpecifics =
           NotificationDetails(iOS: iOSPlatformChannelSpecifics);
@@ -192,7 +203,7 @@ class NotificationAppState extends State<NotificationApp> {
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
       );
-      
+
       print('Notification programmée avec succès');
     } catch (e) {
       print('Erreur lors de la programmation de la notification : $e');
