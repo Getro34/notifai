@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Notification App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
@@ -44,12 +45,14 @@ class NotificationAppState extends State<NotificationApp> {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _bodyController = TextEditingController();
+  final TextEditingController _titleController =
+      TextEditingController(text: 'Notification title');
+  final TextEditingController _bodyController =
+      TextEditingController(text: 'Notification body');
   final TextEditingController _countController =
       TextEditingController(text: '1');
   final TextEditingController _delayController =
-      TextEditingController(text: '10');
+      TextEditingController(text: '5');
 
   static const _padding = EdgeInsets.all(20.0);
   static const _sizedBoxHeight = SizedBox(height: 16);
@@ -185,9 +188,29 @@ class NotificationAppState extends State<NotificationApp> {
       print(
           'Programmation notification : ID=$notificationId, Délai=$delaySeconds sec');
 
+      // Get the application documents directory
+      // final Directory directory = await getApplicationDocumentsDirectory();
+      // final String imagePath = '${directory.path}/logo_holdx.png';
+
+      // Copy the asset to the documents directory if it doesn't exist
+      // final File imageFile = File(imagePath);
+      // if (!await imageFile.exists()) {
+      //   final ByteData data = await rootBundle.load('assets/logo_holdx.png');
+      //   await imageFile.writeAsBytes(data.buffer.asUint8List());
+      // }
+
       const DarwinNotificationDetails iOSPlatformChannelSpecifics =
           DarwinNotificationDetails(
         sound: 'cash_register_sound_effect.mp3',
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+        // attachments: [
+        //   DarwinNotificationAttachment(
+        //     'logo_holdx.png',
+        //     identifier: 'logo_holdx',
+        //   ),
+        // ],
       );
 
       const NotificationDetails platformChannelSpecifics =
